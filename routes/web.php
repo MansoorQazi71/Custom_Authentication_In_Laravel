@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\CustomAuthController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\Initial;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome')->middleware('Initial');
+// });
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware(Initial::class);
+
+
 route::get('/register',[CustomAuthController::class, 'register'])->name('register')->middleware('LoggedIn');
 route::get('/login',[CustomAuthController::class, 'login'])->name('login')->middleware('LoggedIn');
 route::post('/registration',[CustomAuthController::class,'registration'])->name('registerUser');

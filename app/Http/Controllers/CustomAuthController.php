@@ -34,8 +34,8 @@ class CustomAuthController extends Controller
         $res = $user->save();
 
         if ($res) {
+            // return back()->with("success", "Successfully registered");
             return redirect("/login")->with("success","Registered Successfully:");
-
         } else {
             return back()->with("fail", "Some error occurred");
         }
